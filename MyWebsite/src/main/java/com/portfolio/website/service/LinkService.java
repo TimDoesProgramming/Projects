@@ -39,4 +39,14 @@ public class LinkService {
                         "Cannot Find Link by ID " + id));
         return savedLink;
     }
+    public void addLink(String link, String[] scrapedURLs){
+        Link newLink = new Link(link, scrapedURLs);
+        linkRepository.insert(newLink);
+    }
+    public Link getLinkByLink(String link){
+        Link savedLink = linkRepository.findByLink(link)
+                .orElseThrow(() -> new RuntimeException(
+                        "Cannot Find Link by Link " + link));
+        return savedLink;
+    }
 }
