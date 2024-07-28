@@ -49,7 +49,7 @@
 			</div>
 			<div class="container"></br>
 				<p class="intro">
-					Hi I&#39;m Timothy Alban. I started my career with a passion for technology and a desire to learn. I am currently an SDET with experience in Java, Selenium, and Cucumber. I am always looking to learn new technologies and improve my skills. I am a team player and I am always looking to help others. I am a quick learner and I am always looking to improve my skills. I am always looking to learn new technologies and improve my skills. I am a team player and I am always looking to help others. I am a quick learner and I am always looking to improve my skills. I am always looking to learn new technologies and improve my skills. I am a team player and I am always looking to help others. I am a quick learner and I am always looking to improve my skills. I am always looking to learn new technologies and improve my skills. I am a team player and I am always looking to help others. I am a quick learner and I am always looking to improve my skills.
+					Hi I&#39;m Timothy Alban. I started my career with a passion for technology and a desire to learn. I am currently an SDET with experience in Java, Selenium, and Cucumber.
 				</p>
 			</div>
 		</section>

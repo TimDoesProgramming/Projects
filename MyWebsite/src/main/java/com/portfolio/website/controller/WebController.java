@@ -9,4 +9,8 @@ public class WebController {
     public String index() {
         return "index";
     }
+    @GetMapping("/projects")
+    public String projects() {
+        return "projects";
+    }
 }

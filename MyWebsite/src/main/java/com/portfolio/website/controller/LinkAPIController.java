@@ -42,5 +42,41 @@ public LinkAPIController(LinkService linkService) {
 
         return ResponseEntity.ok(linkService.getLinkById(id));
     }
+    @GetMapping("/submit")
+    public Response submitOption(@RequestParam(value = "option", required = false) String option) {
+        // Handle the incoming data (e.g., log it, process it, etc.)
+        System.out.println("Received option: " + option);
+
+        // Create a response
+        Response response = new Response("Success", "Option received successfully "+
+                option);
+        return response;
+    }
+
+    class Response {
+        private String status;
+        private String message;
+
+        public Response(String status, String message) {
+            this.status = status;
+            this.message = message;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+    }
 
 }
