@@ -8,4 +8,8 @@ window.onload = () => {
 
   hamburger.addEventListener('click', () => toggle(navMenu, 'is-active'));
   Array.from(navItems).forEach(e => e.addEventListener('click', toggleNav));
+
 }
+
+
+

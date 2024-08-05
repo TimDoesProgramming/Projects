@@ -66,11 +66,13 @@
 					<div class="column">
 						<div class="box project-text">
 							<article>
-								<div>
-									<figure class="image project-figure">
-										<img src="<c:url value='/img/project-1.jpg'/>" alt="Image">
-									</figure>
-								</div>
+							    <a href="${pageContext.request.contextPath}/scraper"/>Web Scraper
+								    <div>
+									    <figure class="image project-figure">
+										    <img src="<c:url value='/img/project-1.jpg'/>" alt="Image">
+									    </figure>
+								    </div>
+								</a>
 								<div>
 									<p>
 										They don’t want us to eat. I told you all this before, when you have a swimming pool, do not use chlorine, use salt water, the healing, salt water is the healing.
@@ -83,11 +85,13 @@
 					<div class="column">
 						<div class="box project-text">
 							<article>
-								<div>
-									<figure class="image project-figure">
-										<img src="<c:url value='/img/project-2.jpg'/>" alt="Image">
-									</figure>
-								</div>
+							    <a href="${pageContext.request.contextPath}/networkManager"/>Network Manager
+                                    <div>
+                                        <figure class="image project-figure">
+                                            <img src="<c:url value='/img/project-2.jpg'/>" alt="Image">
+                                        </figure>
+                                    </div>
+                                </a>
 								<div>
 									<p>
 										Bless up. Another one. How’s business? Boomin. Don’t ever play yourself. Life is what you make it, so let’s make it.
