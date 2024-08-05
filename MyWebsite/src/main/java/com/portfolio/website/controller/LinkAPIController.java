@@ -42,14 +42,32 @@ public LinkAPIController(LinkService linkService) {
 
         return ResponseEntity.ok(linkService.getLinkById(id));
     }
-    @GetMapping("/submit")
-    public Response submitOption(@RequestParam(value = "option", required = false) String option) {
+    @GetMapping("/submitLink")
+    public Response submitLink(@RequestParam(value = "link", required = false) String link,
+                               @RequestParam(value = "option", required = false) String option) {
         // Handle the incoming data (e.g., log it, process it, etc.)
-        System.out.println("Received option: " + option);
+        System.out.println("Received option: "+option +"\nreceived link: "+ link);
+        Response response;
 
-        // Create a response
-        Response response = new Response("Success", "Option received successfully "+
-                option);
+        // Handle the incoming data (e.g., log it, process it, etc.)
+        switch (option) {
+            case "1":
+                response = new Response("Success", "HI CHRISTINE!" + "\n" + link);
+                break;
+            case "2":
+                response = new Response("Success", "BYE CHRISTINE"+ "\n" + link);
+                break;
+            case "3":
+                response = new Response("Success", "Nobody can poop like Christine"+ "\n" + link);
+                break;
+            case "4":
+                response = new Response("Success", "GET NAYNAYED ON"+ "\n" + link);
+                break;
+            default:
+                response = new Response("ERROR","Invalid option selected"+ "\n" + link);
+                break;
+        }
+
         return response;
     }
 
