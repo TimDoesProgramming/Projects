@@ -9,8 +9,12 @@ public class WebController {
     public String index() {
         return "index";
     }
-    @GetMapping("/projects")
+    @GetMapping("/scraper")
     public String projects() {
-        return "projects";
+        return "scraper";
+    }
+    @GetMapping("/networkManager")
+    public String networkManager() {
+        return "networkManager";
     }
 }
