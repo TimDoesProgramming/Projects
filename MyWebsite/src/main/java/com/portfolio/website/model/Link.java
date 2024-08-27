@@ -14,9 +14,13 @@ public class Link {
     @Field("scrapedURLs")
     private String[] scrapedURLs;
 
-    public Link(String link, String[] scrapedURLs){
+    @Field("referenceId")
+    private String referenceId;
+
+    public Link(String referenceId, String link, String[] scrapedURLs){
         this.link = link;
         this.scrapedURLs = scrapedURLs;
+        this.referenceId = referenceId;
     }
     public String getId() {
         return id;
@@ -24,16 +28,18 @@ public class Link {
     public String getLink() {
         return link;
     }
-    public void setLink(String link) {
-        this.link = link;
-    }
+
+    public String getReferenceId() {return referenceId;}
     public String[] getScrapedURLs() {
         return scrapedURLs;
+    }
+    public void setLink(String link) {
+        this.link = link;
     }
     public void setScrapedURLs(String[] scrapedURLs) {
         this.scrapedURLs = scrapedURLs;
     }
-
+    public void setReferenceId(String referenceId) {this.referenceId = referenceId;}
     @Override
     public String toString() {
         return String.format(
