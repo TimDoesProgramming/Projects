@@ -11,6 +11,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
@@ -60,7 +61,7 @@ public class LinkAPIController {
 
     @GetMapping("/submitLink")
     public BasicResponse submitLink(@RequestParam(value = "link", required = false) String link,
-                                    @RequestParam(value = "option", required = false) String option) {
+                                    @RequestParam(value = "option", required = false) String option) throws ExecutionException, InterruptedException {
         // Handle the incoming data (e.g., log it, process it, etc.)
         System.out.println("Received option: " + option + "\nreceived link: " + link);
         BasicResponse response;
@@ -86,7 +87,7 @@ public class LinkAPIController {
 
 
 
-        return response;
+        return queueService.processRequest(response).get();
     }
 
 

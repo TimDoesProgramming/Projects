@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class QueueService {
 
-    public CompletableFuture<String> processRequest(BasicResponse request) {
+    public CompletableFuture<BasicResponse> processRequest(BasicResponse request) {
 
         try{
             Thread.sleep(5000);
@@ -21,7 +21,7 @@ public class QueueService {
         }
 
 
-        return CompletableFuture.completedFuture("Request processed: " + request);
+        return CompletableFuture.completedFuture(request);
     }
 
 }
