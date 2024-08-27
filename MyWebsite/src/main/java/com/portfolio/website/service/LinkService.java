@@ -4,6 +4,7 @@ import com.portfolio.website.model.Link;
 import com.portfolio.website.repository.LinkRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -39,9 +40,13 @@ public class LinkService {
                         "Cannot Find Link by ID " + id));
         return savedLink;
     }
-    public void addLink(String link, String[] scrapedURLs){
-        Link newLink = new Link(link, scrapedURLs);
-        linkRepository.insert(newLink);
+    public void saveLink(Link link){
+
+        linkRepository.insert(link);
+    }
+    public void saveLink(List<Link> links){
+        linkRepository.insert(links);
+
     }
     public Link getLinkByLink(String link){
         Link savedLink = linkRepository.findByLink(link)
