@@ -62,6 +62,9 @@ public class LinkAPIController {
     @GetMapping("/submitLink")
     public BasicResponse submitLink(@RequestParam(value = "link", required = false) String link,
                                     @RequestParam(value = "option", required = false) String option) throws ExecutionException, InterruptedException {
+
+
+
         // Handle the incoming data (e.g., log it, process it, etc.)
         System.out.println("Received option: " + option + "\nreceived link: " + link);
         BasicResponse response;

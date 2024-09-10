@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LinkService {
@@ -53,5 +54,11 @@ public class LinkService {
                 .orElseThrow(() -> new RuntimeException(
                         "Cannot Find Link by Link " + link));
         return savedLink;
+    }
+    public List<Link> getLinksByReferenceId(String referenceId){
+        List<Link> savedLinks = linkRepository.findByReferenceId(referenceId)
+                .orElseThrow(() -> new RuntimeException(
+                        "Cannot Find Link by Reference ID " + referenceId));
+        return savedLinks;
     }
 }
