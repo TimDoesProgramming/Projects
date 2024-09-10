@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### drivers ###
+/src/main/resources/drivers/*/
+/src/main/resources/drivers/*.exe
