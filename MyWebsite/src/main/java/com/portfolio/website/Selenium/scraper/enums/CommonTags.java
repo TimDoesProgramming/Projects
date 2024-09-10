@@ -2,9 +2,9 @@ package com.portfolio.website.Selenium.scraper.enums;
 
 
 
-public enum CommonTags {
+public enum CommonTags implements ICommon{
 
-    HREF,
+
     A,
     H1,
     H2,
