@@ -13,21 +13,38 @@ public class CrawlingQueue<T>{
         currentQueue = new PriorityQueue<T>();
     }
 
+    public CrawlingQueue(int size){
+
+        for(int i = 0; i<size; i++){
+            if(i == 0){
+                currentQueue = new PriorityQueue<T>();
+                queues.add(currentQueue);
+            }else{
+                queues.add(new PriorityQueue<T>());
+            }
+        }
+    }
+
     /**
      * Adds an item to the current queue
      * @param item
      */
     public void add(T item){
+        if(queues.isEmpty()){
+            currentQueue = new PriorityQueue<T>();
+        }
         currentQueue.add(item);
     }
 
     /**
-     * returns the next queue
+     * returns the next queue, will return null if there is no next queue
      *
      * @return the current queue
      */
     public Queue<T> poll(){
-        return queues.poll();
+        Queue<T> queueToReturn = queues.poll();
+        currentQueue = queues.peek();
+        return queueToReturn;
     }
 
     /**
@@ -38,5 +55,8 @@ public class CrawlingQueue<T>{
         queues.add(queue);
     }
 
+    public int getVolume(){
+        return currentQueue.size();
+    }
 
 }
