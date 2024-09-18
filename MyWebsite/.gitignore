@@ -35,3 +35,4 @@ build/
 ### drivers ###
 /src/main/resources/drivers/*/
 /src/main/resources/drivers/*.exe
+/src/main/resources/profiles/*/

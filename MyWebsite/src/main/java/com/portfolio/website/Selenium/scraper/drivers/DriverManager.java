@@ -20,9 +20,10 @@ public class DriverManager {
     private static WebDriver webDriver = null;
 
     private static char ls = File.separatorChar;
-    private static String resourcePath = ""+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"chromedriver.exe";
-    private static String driverPathWindows = ""+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"windows"+ls+"chrome-win64"+ls+"chrome-win64"+ls+"chrome.exe";
-    private static String driverPathLinux = ""+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"linux"+ls+"chrome-win64"+ls+"chrome-win64"+ls+"chrome.exe";
+    private static String profilePath = "."+ls+"src"+ls+"main"+ls+"resources" + ls+"profiles"+ls +"profileBase";
+    private static String resourcePath = "."+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"chromedriver.exe";
+    private static String driverPathWindows = "."+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"windows"+ls+"chrome-win64"+ls+"chrome-win64"+ls+"chrome.exe";
+    private static String driverPathLinux = "."+ls+"src"+ls+"main"+ls+"resources" + ls+"drivers"+ ls+"linux"+ls+"chrome-win64"+ls+"chrome-win64"+ls+"chrome.exe";
 
     /**
      * Constructor for DriverManager
@@ -56,7 +57,9 @@ public class DriverManager {
      */
     private static ChromeOptions getChromeOptions(){
         ChromeOptions co = new ChromeOptions();
-        co.addArguments("--headless=new");
+        //co.addArguments("--profile-directory="+profilePath);
+        //co.addArguments("--headless=new", "--disable-gpu", "--blink-settings=imagesEnabled=false","--ignore-certificate-errors");
+
         if(OsUtils.isWindows()) {
             co.setBinary(driverPathWindows);
         }else if(OsUtils.isLinux()){
