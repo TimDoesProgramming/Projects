@@ -30,7 +30,7 @@ public class ByFactory {
     }
     public static By getByCommonAttributeBys(CommonAttributes ca){
         switch (ca){
-            case HREF -> {return By.cssSelector("href");}
+            case HREF -> {return By.cssSelector("[href]");}
             case VALUE -> {return By.cssSelector("value");}
             case CLASS -> {return  By.cssSelector("class");}
             case STYLE -> {return By.cssSelector("style");}
