@@ -1,7 +1,7 @@
 class FormController {
     constructor() {
         this.form = document.getElementById('inputForm');
-        this.inputBox = document.getElementById('linkInput');
+        this.inputBox = document.getElementById('baseUrlInput');
         this.depthInput = document.getElementById('depthInput');
         this.spinner = document.getElementById('spinner');
         this.resultDiv = document.getElementById('result');
@@ -19,12 +19,12 @@ class FormController {
         const dropdown = this.dropdown.value;
         console.log('Link:', input);
         const encodedOption = encodeURIComponent(dropdown);
-        const encodedLink = encodeURIComponent(input);
+        const encodedBaseUrl = encodeURIComponent(input);
         const encodedDepth = encodeURIComponent(depth);
 
         this.spinner.style.display = 'block';
         this.resultDiv.innerHTML = ''; // Clear previous result
-        const url = 'http://localhost:8080/api/link/submitLink?link=' + encodedLink+'&depth='+encodedDepth+'&option='+encodedOption;
+        const url = 'http://localhost:8080/api/link/submitLink?baseUrl=' + encodedBaseUrl+'&depth='+encodedDepth;
 
 
         // Make the API call using fetch

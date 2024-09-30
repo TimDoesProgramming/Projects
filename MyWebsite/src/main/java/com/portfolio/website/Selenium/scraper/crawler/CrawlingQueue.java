@@ -2,71 +2,62 @@ package com.portfolio.website.Selenium.scraper.crawler;
 
 import java.util.*;
 
-public class CrawlingQueue<T>{
+public class CrawlingQueue<T> {
 
-    private LinkedList<T> currentQueue;
-    private Queue<LinkedList<T>> currentDepthqueues;
-    private Queue<LinkedList<T>> nextDepthQueues;
+    private Queue<T> currentQueue;
+    private Queue<T> nextQueue;
+
 
     public CrawlingQueue(){
         currentQueue = new LinkedList<T>();
-        currentDepthqueues = new LinkedList<LinkedList<T>>();
-        nextDepthQueues = new LinkedList<LinkedList<T>>();
     }
 
-    public CrawlingQueue(int size){
-
-        for(int i = 0; i<size; i++){
-            if(i == 0){
-                currentQueue = new LinkedList<>();
-                currentDepthqueues = new LinkedList<LinkedList<T>>();
-                nextDepthQueues = new LinkedList<LinkedList<T>>();
-                currentDepthqueues.add(currentQueue);
-            }else{
-                currentDepthqueues.add(new LinkedList<>());
-            }
-        }
-    }
 
     /**
      * Adds an item to the current queue
      * @param item
      */
     public void add(T item){
-        if(currentDepthqueues == null || currentDepthqueues.isEmpty()){
+        if(currentQueue == null || currentQueue.isEmpty()){
             currentQueue = new LinkedList<T>();
-            currentDepthqueues.add(currentQueue);
         }
         currentQueue.add(item);
     }
-    public void addNextDepth(T item){
-        if(currentDepthqueues == null || currentDepthqueues.isEmpty()){
-            currentQueue = new LinkedList<T>();
-            nextDepthQueues.add(currentQueue);
+
+
+
+    public void addNextQueue(T item){
+        if(nextQueue == null || currentQueue.isEmpty()){
+            nextQueue = new LinkedList<T>();
         }
-        currentQueue.add(item);
+        nextQueue.add(item);
     }
     /**
      * returns the next queue, will return null if there is no next queue
      *
      * @return the current queue
      */
-    public Queue<T> poll(){
-        Queue<T> queueToReturn = currentDepthqueues.poll();
-        currentQueue = currentDepthqueues.peek();
-        return queueToReturn;
-    }
+    public T poll(){
+        return currentQueue.poll();
 
-    /**
-     * Adds a queue to the list of queues
-     * @param queue
-     */
-    public void addQueue(LinkedList<T> queue){
-        currentDepthqueues.add(queue);
+    }
+    public void switchQueues(){
+        currentQueue = nextQueue;
+        nextQueue = new LinkedList<T>();
     }
 
     public int getVolume(){
         return currentQueue.size();
     }
+    public int getNextVolume(){
+        return nextQueue.size();
+    }
 
+    public Queue<T> getCurrentQueue() {
+        return currentQueue;
+    }
+
+    public Queue<T> getNextQueue() {
+        return nextQueue;
+    }
 }

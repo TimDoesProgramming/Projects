@@ -35,21 +35,4 @@ public class Page extends DriverManager {
         this.url = url;
         
     }
-
-
-
-    /**
-     * Scrapes a page and adds the scraped links to the linkAndScraped HashMap
-     * @param wes
-     * @return
-     */
-    public String[] getLinks(List<WebElement> wes){
-        String[] links = new String[0];
-        int size = wes.size();
-
-        if(size>0){
-            return wes.stream().map((we)-> we.getAttribute("href")).toArray(String[]::new);
-        }
-        return links;
-    }
 }

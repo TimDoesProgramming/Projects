@@ -9,32 +9,32 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Link {
     @Id
     private String id;
-    @Field("link")
-    private String link;
+    @Field("baseUrl")
+    private String baseUrl;
     @Field("scrapedURLs")
     private String[] scrapedURLs;
 
     @Field("referenceId")
     private String referenceId;
 
-    public Link(String referenceId, String link, String[] scrapedURLs){
-        this.link = link;
+    public Link(String referenceId, String baseUrl, String[] scrapedURLs){
+        this.baseUrl = baseUrl;
         this.scrapedURLs = scrapedURLs;
         this.referenceId = referenceId;
     }
     public String getId() {
         return id;
     }
-    public String getLink() {
-        return link;
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
     public String getReferenceId() {return referenceId;}
     public String[] getScrapedURLs() {
         return scrapedURLs;
     }
-    public void setLink(String link) {
-        this.link = link;
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
     public void setScrapedURLs(String[] scrapedURLs) {
         this.scrapedURLs = scrapedURLs;
@@ -44,6 +44,6 @@ public class Link {
     public String toString() {
         return String.format(
                 "Customer[id=%s, link='%s', scrapedLinks='%s']",
-                id, link, scrapedURLs);
+                id, baseUrl, scrapedURLs);
     }
 }

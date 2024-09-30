@@ -19,7 +19,7 @@
 
     <form id="inputForm">
         <label for="input">Submit the website link to scrape</label>
-        <input type="text" id="linkInput" name="linkInput">
+        <input type="text" id="baseUrlInput" name="baseUrlInput">
         <br><br>
         <input type="text" id="depthInput" name="depthInput">
         <label for="dropdown">Choose an option:</label>

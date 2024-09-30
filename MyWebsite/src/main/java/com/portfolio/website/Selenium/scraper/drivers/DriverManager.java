@@ -58,8 +58,8 @@ public class DriverManager {
      */
     private static ChromeOptions getChromeOptions(){
         ChromeOptions co = new ChromeOptions();
-        //co.addArguments("--profile-directory="+profilePath);
-        //co.addArguments("--headless=new", "--disable-gpu", "--blink-settings=imagesEnabled=false","--ignore-certificate-errors");
+        //"--headless=new",
+        co.addArguments( "--disable-gpu", "--blink-settings=imagesEnabled=false","--ignore-certificate-errors");
 
         if(OsUtils.isWindows()) {
             co.setBinary(driverPathWindows);
@@ -71,6 +71,7 @@ public class DriverManager {
     public void quit(){
         if(webDriver != null)
             webDriver.quit();
+        webDriver = null;
     }
 
 }
