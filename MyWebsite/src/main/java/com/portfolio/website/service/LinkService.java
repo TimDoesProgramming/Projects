@@ -27,7 +27,7 @@ public class LinkService {
         Link savedLink = linkRepository.findById(link.getId())
                 .orElseThrow(() -> new RuntimeException(
                         String.format("Cannot Find Link by ID %s", link.getId())));
-        savedLink.setLink(link.getLink());
+        savedLink.setBaseUrl(link.getBaseUrl());
         savedLink.setScrapedURLs(link.getScrapedURLs());
 
         linkRepository.save(link);

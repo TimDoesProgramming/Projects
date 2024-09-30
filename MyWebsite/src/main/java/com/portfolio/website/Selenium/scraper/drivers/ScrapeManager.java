@@ -16,9 +16,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
-public class ScrapeManager extends Page {
+public class ScrapeManager extends DriverManager {
 
 
     protected String baseUrl;
@@ -52,7 +53,12 @@ public class ScrapeManager extends Page {
         return scrape(common, timeout);
     }
 
-
+    private Link scrapePage(String refId, String url){
+        Link link = new Link(refId, url, null);
+        getDriver().get(url);
+        link.setScrapedURLs(scrapeUrls());
+        return link;
+    }
     public String getAttributeValue(WebElement we, CommonAttributes attribute) {
         return we.getAttribute(attribute.getAttribute());
     }
@@ -64,7 +70,29 @@ public class ScrapeManager extends Page {
         }
         return new String[0];
     }
+    public String[] scrapeUrls(String url){
+        getDriver().get(url);
+        return scrapeUrls();
+    }
+    public String[] scrapeUrls(){
+        List<WebElement> wes = scrape(CommonAttributes.HREF, 10);
+        int size = wes.size();
 
+        if(size>0){
+            return wes.stream().map((we)-> we.getAttribute("href")).collect(Collectors.toList())
+                    .stream().distinct().filter((url)->{
+                        return url.startsWith("http") && !url.contains(".css") && !url.contains(".png")
+                                && !url.contains(".jpeg") && !url.contains(".jpg") && !url.contains(".pdf");
+                    }).collect(Collectors.toList()).toArray(String[]::new);
+        }
+        return null;
+    }
+    private Link scrapeIntoLink(String refId, String url){
+        Link link = new Link(refId, url, null);
+        getDriver().get(url);
+        link.setScrapedURLs(scrapeUrls());
+        return link;
+    }
     /**
      * @return
      */
@@ -77,6 +105,7 @@ public class ScrapeManager extends Page {
     }
 
     public WebDriver getDriver() {
+
         return getWebDriver();
     }
 
