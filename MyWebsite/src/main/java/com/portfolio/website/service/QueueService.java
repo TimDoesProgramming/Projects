@@ -24,12 +24,12 @@ public class QueueService {
     LinkService linkService;
     @Autowired
     LinkRepository linkRepository;
-    public CompletableFuture<List<Link>> processScrape(String url) {
+    public CompletableFuture<List<Link>> processScrape(String url, int depth) {
         CrawlingManager crawlingManager = new CrawlingManager(linkService);
         ObjectMapper mapper = new ObjectMapper();
         List<Link> links = null;
         try{
-            links = linkRepository.findByReferenceId(crawlingManager.startCrawling(url, 1)).get();
+            links = linkRepository.findByReferenceId(crawlingManager.startCrawling(url, depth)).get();
 
         } catch (Exception e) {
             Thread.currentThread().interrupt();
