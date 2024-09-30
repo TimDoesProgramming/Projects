@@ -1,6 +1,5 @@
 package com.portfolio.website.controller;
 
-import com.portfolio.website.model.BasicResponse;
 import com.portfolio.website.model.Link;
 import com.portfolio.website.model.LinkResponse;
 import com.portfolio.website.service.LinkService;
@@ -8,12 +7,10 @@ import com.portfolio.website.service.QueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
 @RequestMapping("/api/link")
@@ -61,38 +58,19 @@ public class LinkAPIController {
     }
 
     @GetMapping("/submitLink")
-    public LinkResponse submitLink(@RequestParam(value = "link", required = false) String link,
+    public LinkResponse submitLink(@RequestParam(value = "baseUrl", required = false) String baseUrl,
                                     @RequestParam(value = "option", required = false) String option,
-                                    @RequestParam(value = "depth", required = false) String depth) throws ExecutionException, InterruptedException {
+                                    @RequestParam(value = "depth", required = false) int depth) throws ExecutionException, InterruptedException {
 
-
-
+        if(depth> 3){
+            return new LinkResponse("ERROR", "Depth cannot be greater than 3", null);
+        }
         // Handle the incoming data (e.g., log it, process it, etc.)
-        System.out.println("Received option: " + option + "\nreceived link: " + link);
-
+        System.out.println("Received option: " + option + "\nreceived link: " + baseUrl);
 
         LinkResponse linkResponse;
-//        BasicResponse response;
-//        // Handle the incoming data (e.g., log it, process it, etc.)
-//        switch (option) {
-//            case "1":
-//                response = new BasicResponse("Success", "HI CHRISTINE!" + "\n" + link);
-//                break;
-//            case "2":
-//                response = new BasicResponse("Success", "BYE CHRISTINE" + "\n" + link);
-//                break;
-//            case "3":
-//                response = new BasicResponse("Success", "Nobody can poop like Christine" + "\n" + link);
-//                break;
-//            case "4":
-//                response = new BasicResponse("Success", "GET NAYNAYED ON" + "\n" + link);
-//                break;
-//            default:
-//                response = new BasicResponse("ERROR", "Invalid option selected" + "\n" + link);
-//                break;
-//        }
 
-        linkResponse = new LinkResponse("SUCCESS", queueService.processScrape(link).get());
+        linkResponse = new LinkResponse("SUCCESS","We went through a depth of " + depth, queueService.processScrape(baseUrl, depth).get());
 
         return linkResponse;
     }
