@@ -2,6 +2,7 @@ package com.portfolio.website.controller;
 
 import com.portfolio.website.model.BasicResponse;
 import com.portfolio.website.model.Link;
+import com.portfolio.website.model.LinkResponse;
 import com.portfolio.website.service.LinkService;
 import com.portfolio.website.service.QueueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class LinkAPIController {
     }
 
     @GetMapping("/submitLink")
-    public BasicResponse submitLink(@RequestParam(value = "link", required = false) String link,
+    public LinkResponse submitLink(@RequestParam(value = "link", required = false) String link,
                                     @RequestParam(value = "option", required = false) String option,
                                     @RequestParam(value = "depth", required = false) String depth) throws ExecutionException, InterruptedException {
 
@@ -68,30 +69,32 @@ public class LinkAPIController {
 
         // Handle the incoming data (e.g., log it, process it, etc.)
         System.out.println("Received option: " + option + "\nreceived link: " + link);
-        BasicResponse response;
 
-        // Handle the incoming data (e.g., log it, process it, etc.)
-        switch (option) {
-            case "1":
-                response = new BasicResponse("Success", "HI CHRISTINE!" + "\n" + link);
-                break;
-            case "2":
-                response = new BasicResponse("Success", "BYE CHRISTINE" + "\n" + link);
-                break;
-            case "3":
-                response = new BasicResponse("Success", "Nobody can poop like Christine" + "\n" + link);
-                break;
-            case "4":
-                response = new BasicResponse("Success", "GET NAYNAYED ON" + "\n" + link);
-                break;
-            default:
-                response = new BasicResponse("ERROR", "Invalid option selected" + "\n" + link);
-                break;
-        }
 
-        response = new BasicResponse("SUCCESS", queueService.processScrape(link).get());
+        LinkResponse linkResponse;
+//        BasicResponse response;
+//        // Handle the incoming data (e.g., log it, process it, etc.)
+//        switch (option) {
+//            case "1":
+//                response = new BasicResponse("Success", "HI CHRISTINE!" + "\n" + link);
+//                break;
+//            case "2":
+//                response = new BasicResponse("Success", "BYE CHRISTINE" + "\n" + link);
+//                break;
+//            case "3":
+//                response = new BasicResponse("Success", "Nobody can poop like Christine" + "\n" + link);
+//                break;
+//            case "4":
+//                response = new BasicResponse("Success", "GET NAYNAYED ON" + "\n" + link);
+//                break;
+//            default:
+//                response = new BasicResponse("ERROR", "Invalid option selected" + "\n" + link);
+//                break;
+//        }
 
-        return response;
+        linkResponse = new LinkResponse("SUCCESS", queueService.processScrape(link).get());
+
+        return linkResponse;
     }
 
 
