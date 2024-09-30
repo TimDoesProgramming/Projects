@@ -47,7 +47,8 @@ public class DriverManager {
         try{
             new WebDriverWait(webDriver, Duration.ofSeconds(timeout)).until(ec);
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Exception: " + e.getMessage());
+            System.out.println("\n========================\n");
         }
 
     }

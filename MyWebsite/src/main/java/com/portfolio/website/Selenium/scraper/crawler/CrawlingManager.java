@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CrawlingManager {
 
@@ -30,6 +31,7 @@ public class CrawlingManager {
     // Will need to refactor the code to work in the queue service
     public String startCrawling(String baseUrl, int depth){
         Link link;
+        String[] scrapedUrls;
         scraper.setBaseUrl(baseUrl);
         scraper.getDriver().get(baseUrl);
         link = new Link(referenceId, baseUrl, getLinkStrings());
@@ -37,18 +39,20 @@ public class CrawlingManager {
         urlsToCrawl.add(link);
 
         for(int i = 0; i<depth; i++){
-
             for(Link nextLink : urlsToCrawl.poll()){
                 for(String nextURL : nextLink.getScrapedURLs()){
                     scraper.getDriver().get(nextURL);
-                    link = new Link(referenceId, nextURL, getLinkStrings());
-                    linkService.saveLink(link);
-                    urlsToCrawl.add(link);
+                    if((scrapedUrls = getLinkStrings()) != null && scrapedUrls.length >0) {
+                        link = new Link(referenceId, nextURL, scrapedUrls);
+                        linkService.saveLink(link);
+                        urlsToCrawl.add(link);
+                    }
                 }
             }
 
  
         }
+        scraper.quit();
         return referenceId;
     }
 
@@ -57,11 +61,14 @@ public class CrawlingManager {
         int size = wes.size();
 
         if(size>0){
-            return wes.stream().map((we)-> we.getAttribute("href")).toArray(String[]::new);
+            return wes.stream().map((we)-> we.getAttribute("href")).collect(Collectors.toList())
+                    .stream().distinct().filter((url)->{
+                        return url.startsWith("http") && !url.contains(".css") && !url.contains(".png")
+                                && !url.contains(".jpeg") && !url.contains(".jpg") && !url.contains(".pdf");
+                    }).collect(Collectors.toList()).toArray(String[]::new);
         }
-        return new String[0];
+        return null;
     }
-
 
 
     public void saveLink(Link link){
