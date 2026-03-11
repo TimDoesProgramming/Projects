@@ -14,6 +14,7 @@ class FormController {
     handleSubmit(event) {
 
         event.preventDefault();
+        const input = this.inputBox.value;
         const depth = this.depthInput.value;
         const dropdown = this.dropdown.value;
         console.log('Link:', input);
@@ -23,8 +24,7 @@ class FormController {
 
         this.spinner.style.display = 'block';
         this.resultDiv.innerHTML = ''; // Clear previous result
-        const url = 'http://localhost:8080/api/link/submitLink?baseUrl=' + encodedBaseUrl+'&depth='+encodedDepth;
-
+        const url = `${window.location.origin}/api/link/submitLink?baseUrl=${encodedBaseUrl}&depth=${encodedDepth}`;
 
         // Make the API call using fetch
         fetch(url, {
