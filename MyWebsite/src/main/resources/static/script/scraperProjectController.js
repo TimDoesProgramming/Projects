@@ -16,9 +16,7 @@ class FormController {
         event.preventDefault();
         const input = this.inputBox.value;
         const depth = this.depthInput.value;
-        const dropdown = this.dropdown.value;
         console.log('Link:', input);
-        const encodedOption = encodeURIComponent(dropdown);
         const encodedBaseUrl = encodeURIComponent(input);
         const encodedDepth = encodeURIComponent(depth);
 
