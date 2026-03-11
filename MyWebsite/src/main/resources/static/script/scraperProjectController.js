@@ -14,7 +14,6 @@ class FormController {
     handleSubmit(event) {
 
         event.preventDefault();
-        const input = this.inputBox.value;
         const depth = this.depthInput.value;
         const dropdown = this.dropdown.value;
         console.log('Link:', input);
@@ -47,5 +46,18 @@ class FormController {
                 spinner.style.display = 'none';
             });
     }
+
+}
+
+window.onload = () => {
+  const navMenu = document.querySelector('.nav-menu');
+  const navItems = document.querySelectorAll('.nav-item');
+  const hamburger = document.querySelector('.nav-toggle');
+
+  const toggle = e => e.classList.toggle('is-active');
+  const toggleNav = ({ target }) => Array.from(navMenu.classList).includes('is-active') ? toggle(navMenu) : null;
+
+  hamburger.addEventListener('click', () => toggle(navMenu, 'is-active'));
+  Array.from(navItems).forEach(e => e.addEventListener('click', toggleNav));
 
 }
