@@ -19,7 +19,7 @@
 			<!-- This "nav-menu" is hidden on mobile -->
 			<!-- Add the modifier "is-active" to display it on mobile -->
 			<div class="nav-left">
-				<a href="https://github.com/TimothyAlban" class="nav-item">
+				<a href="https://github.com/TimDoesProgramming" class="nav-item">
 					<span class="icon">
 						<i class="fa fa-github"></i>
 					</span>
@@ -112,7 +112,7 @@
 				</div>
 				<div class="social-container columns">
 					<div class="column is-6 has-text-centered">
-						<a target="_blank" href="https://www.linkedin.com/in/timothy-alban-2564551a7/"><img class="" src="<c:url value='/img/linkedin.png'/>"></a>
+						<a target="_blank" href="https://www.linkedin.com/in/timothyalban2022/"><img class="" src="<c:url value='/img/linkedin.png'/>"></a>
 					</div>
 					<div class="column is-6 has-text-centered">
 						<a target="_blank" href="https://www.facebook.com/timmehhhhhhhhh/"><img class="" src="<c:url value='/img/facebook.png'/>"></a>

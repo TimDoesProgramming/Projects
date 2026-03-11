@@ -16,16 +16,13 @@ class FormController {
         event.preventDefault();
         const input = this.inputBox.value;
         const depth = this.depthInput.value;
-        const dropdown = this.dropdown.value;
         console.log('Link:', input);
-        const encodedOption = encodeURIComponent(dropdown);
         const encodedBaseUrl = encodeURIComponent(input);
         const encodedDepth = encodeURIComponent(depth);
 
         this.spinner.style.display = 'block';
         this.resultDiv.innerHTML = ''; // Clear previous result
-        const url = 'http://localhost:8080/api/link/submitLink?baseUrl=' + encodedBaseUrl+'&depth='+encodedDepth;
-
+        const url = `${window.location.origin}/api/link/submitLink?baseUrl=${encodedBaseUrl}&depth=${encodedDepth}`;
 
         // Make the API call using fetch
         fetch(url, {
@@ -47,5 +44,18 @@ class FormController {
                 spinner.style.display = 'none';
             });
     }
+
+}
+
+window.onload = () => {
+  const navMenu = document.querySelector('.nav-menu');
+  const navItems = document.querySelectorAll('.nav-item');
+  const hamburger = document.querySelector('.nav-toggle');
+
+  const toggle = e => e.classList.toggle('is-active');
+  const toggleNav = ({ target }) => Array.from(navMenu.classList).includes('is-active') ? toggle(navMenu) : null;
+
+  hamburger.addEventListener('click', () => toggle(navMenu, 'is-active'));
+  Array.from(navItems).forEach(e => e.addEventListener('click', toggleNav));
 
 }
